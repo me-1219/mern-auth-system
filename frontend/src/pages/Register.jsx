@@ -83,7 +83,11 @@ export default function Register() {
         "Account created successfully"
       );
 
-      navigate("/");
+      navigate("/verify-email", {
+        state: {
+          email: form.email,
+        },
+      });
     } catch (err) {
       toast.error(
         err.response?.data

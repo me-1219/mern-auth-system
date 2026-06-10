@@ -7,3 +7,6 @@ export const registerUser = (data) =>
 
 export const loginUser = (data) =>
   axios.post(`${API}/login`, data);
+
+export const verifyEmail = (data) =>
+  axios.post(`${API}/verify-email`, data);
