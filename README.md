@@ -4,7 +4,7 @@ A secure full-stack authentication application built using React, Vite, Tailwind
 
 ## Features
 
-* User Registration
+* User Registrations
 * Login with Email
 * Login with Username
 * Google OAuth Authentication
