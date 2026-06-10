@@ -205,7 +205,7 @@ GET /api/auth/google
 
 ## Author
 
-### Mebtu Melak
+### Mebit Melak
 
 Frontend Developer | React Developer | MERN Stack Developer
 
