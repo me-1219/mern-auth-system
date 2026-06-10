@@ -29,7 +29,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// routes
 app.use("/api/auth", authRoutes);
 app.use("/api/auth", googleRoutes);
 

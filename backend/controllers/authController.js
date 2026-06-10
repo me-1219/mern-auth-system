@@ -66,3 +66,17 @@ export const login = async (req, res) => {
     res.status(500).json(err.message);
   }
 };
+//get all registered users
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({})
+      .select("-password")
+      .sort({ createdAt: -1 });
+
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(500).json({
+      message: "Failed to fetch users",
+    });
+  }
+};
