@@ -15,6 +15,7 @@ export default function Dashboard() {
     }
 
     if (storedUser) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setUser(JSON.parse(storedUser));
     }
   }, [navigate]);
