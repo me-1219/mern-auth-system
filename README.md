@@ -158,6 +158,11 @@ POST /api/auth/login
 ```http
 GET /api/auth/google
 ```
+#### Get all Users
+
+```http
+GET /api/auth/all
+```
 
 ## Authentication Flow
 
