@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { verifyEmail } from "../services/authService";
+import { verifyEmail, resendVerification  } from "../services/authService";
 import { Mail, ShieldCheck } from "lucide-react";
 import toast from "react-hot-toast";
 
@@ -12,7 +12,21 @@ export default function VerifyEmail() {
 
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
+  const handleResend = async () => {
+  try {
+    await resendVerification({
+      email,
+    });
 
+    toast.success(
+      "Verification code sent again"
+    );
+  } catch (error) {
+    toast.error(
+      error.response?.data?.message
+    );
+  }
+};
   const handleVerify = async (e) => {
     e.preventDefault();
 
@@ -115,7 +129,8 @@ export default function VerifyEmail() {
 
             <button
               type="button"
-              className="mt-1 text-blue-600 hover:text-blue-700 font-medium"
+              onClick={handleResend}
+              className="mt-2 text-blue-600 hover:text-blue-700 font-medium"
             >
               Resend Code
             </button>

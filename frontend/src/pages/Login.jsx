@@ -153,7 +153,18 @@ export default function Login() {
                 </span>
                 Google OAuth Login
               </div>
-
+              <div className="flex items-center gap-3">
+                <span className="text-green-400">
+                  ✓
+                </span>
+                Forgot Password with OTP
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-green-400">
+                  ✓
+                </span>
+                Reset Password via Email OTP
+              </div>
               <div className="flex items-center gap-3">
                 <span className="text-green-400">
                   ✓

@@ -6,6 +6,7 @@ A secure full-stack authentication system built with React, Vite, Tailwind CSS, 
 
 * User Registration
 * Email Verification with OTP
+* Resend Verification OTP
 * Login with Email
 * Login with Username
 * Google OAuth Authentication
@@ -226,7 +227,6 @@ GET /api/auth/all
 ## Future Improvements
 
 * Refresh Tokens
-* Resend Verification OTP
 * Role-Based Access Control (RBAC)
 * User Profile Management
 * Multi-Factor Authentication (MFA)

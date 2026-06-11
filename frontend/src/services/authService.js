@@ -21,3 +21,9 @@ export const resetPassword = (data) =>
     "http://localhost:5000/api/auth/reset-password",
     data
   );
+
+  export const resendVerification = (data) =>
+  axios.post(
+    `${API}/resend-verification`,
+    data
+  );

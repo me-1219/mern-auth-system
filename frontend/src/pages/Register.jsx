@@ -137,6 +137,7 @@ export default function Register() {
             <p className="mt-6 text-slate-300 text-lg">
               Join our secure
               authentication platform
+              
               powered by JWT,
               MongoDB and Google
               OAuth.
@@ -149,14 +150,25 @@ export default function Register() {
                 </span>
                 Secure JWT Authentication
               </div>
-
+              <div className="flex items-center gap-3">
+                <span className="text-green-400">
+                  ✓
+                </span>
+                Email Verification with OTP
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-green-400">
+                  ✓
+                </span>
+                Resend Verification OTP
+              </div>
               <div className="flex items-center gap-3">
                 <span className="text-green-400">
                   ✓
                 </span>
                 Google OAuth Support
               </div>
-
+                
               <div className="flex items-center gap-3">
                 <span className="text-green-400">
                   ✓
