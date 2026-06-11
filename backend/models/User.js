@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
   verificationCode: String,
 
   verificationCodeExpires: Date,
+
+  resetPasswordCode: String,
+  resetPasswordExpires: Date,
+
 });
 
 export default mongoose.model("User", userSchema);

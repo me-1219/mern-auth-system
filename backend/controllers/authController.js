@@ -40,7 +40,13 @@ export const register = async (req, res) => {
         Date.now() + 10 * 60 * 1000,
     });
 
-    await sendEmail(email, verificationCode);
+    await sendEmail({
+      email,
+      subject: "Verify your email",
+      heading: "Email Verification",
+      message: "Use the verification code below to verify your account.",
+      code: verificationCode,
+    });
 
     res.status(201).json({
       message:
@@ -169,6 +175,108 @@ export const verifyEmail = async (req, res) => {
   }
 };
 
+export const forgotPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    const resetCode = Math.floor(
+      100000 + Math.random() * 900000
+    ).toString();
+
+    user.resetPasswordCode = resetCode;
+
+    user.resetPasswordExpires =
+      Date.now() + 10 * 60 * 1000;
+
+    await user.save();
+
+    await sendEmail({
+      email,
+      subject: "Password Reset Code",
+      heading: "Reset Your Password",
+      message: "Use the code below to reset your password.",
+      code: resetCode,
+    });
+
+    res.json({
+      message:
+        "Password reset code sent successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+//reset password
+export const resetPassword = async (req, res) => {
+  try {
+    const {
+      email,
+      code,
+      newPassword,
+    } = req.body;
+
+    const user = await User.findOne({
+      email,
+    });
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    if (
+      user.resetPasswordCode !== code
+    ) {
+      return res.status(400).json({
+        message: "Invalid OTP",
+      });
+    }
+
+    if (
+      user.resetPasswordExpires <
+      Date.now()
+    ) {
+      return res.status(400).json({
+        message: "OTP expired",
+      });
+    }
+
+    const hashedPassword =
+      await bcrypt.hash(
+        newPassword,
+        10
+      );
+
+    user.password = hashedPassword;
+
+    user.resetPasswordCode = null;
+
+    user.resetPasswordExpires = null;
+
+    await user.save();
+
+    res.json({
+      message:
+        "Password reset successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
 //get all registered users
 export const getAllUsers = async (req, res) => {
   try {

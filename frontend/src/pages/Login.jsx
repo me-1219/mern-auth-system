@@ -270,12 +270,12 @@ export default function Login() {
                   Remember me
                 </label>
 
-                <button
-                  type="button"
-                  className="text-blue-600 hover:text-blue-700"
-                >
-                  Forgot Password?
-                </button>
+                <Link
+                to="/forgot-password"
+                className="text-blue-600 text-sm"
+              >
+                Forgot Password?
+              </Link>
               </div>
 
               {/* LOGIN BUTTON */}
