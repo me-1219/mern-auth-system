@@ -1,6 +1,6 @@
 # MERN Authentication System
 
-A secure full-stack authentication system built with React, Vite, Tailwind CSS, Node.js, Express, MongoDB, JWT, Google OAuth, and Email OTP Verification. The application provides modern authentication workflows, secure user management, and protected routes.
+A secure full-stack authentication system built with React, Vite, Tailwind CSS, Node.js, Express, MongoDB, JWT, Google OAuth, Email OTP Verification, and Password Recovery. The application provides modern authentication workflows, secure user management, and protected routes.
 
 ## Features
 
@@ -11,6 +11,8 @@ A secure full-stack authentication system built with React, Vite, Tailwind CSS, 
 * Google OAuth Authentication
 * JWT Authentication
 * Protected Routes
+* Forgot Password with OTP
+* Reset Password via Email OTP
 * Secure Password Hashing with bcrypt
 * User Dashboard
 * Logout Functionality
@@ -82,7 +84,7 @@ git clone https://github.com/yourusername/mern-auth-system.git
 cd mern-auth-system
 ```
 
-## Backend Setup
+### Backend Setup
 
 ```bash
 cd backend
@@ -111,7 +113,7 @@ Start the backend server:
 npm run dev
 ```
 
-## Frontend Setup
+### Frontend Setup
 
 ```bash
 cd frontend
@@ -158,7 +160,20 @@ POST /api/auth/login
 ```http
 GET /api/auth/google
 ```
-#### Get all Users
+
+#### Forgot Password
+
+```http
+POST /api/auth/forgot-password
+```
+
+#### Reset Password
+
+```http
+POST /api/auth/reset-password
+```
+
+#### Get All Users
 
 ```http
 GET /api/auth/all
@@ -171,11 +186,21 @@ GET /api/auth/all
 1. User registers using username, email, and password.
 2. System generates a 6-digit OTP.
 3. OTP is sent to the user's email address.
-4. User enters the verification code.
-5. Email is verified successfully.
+4. User verifies the account using the OTP.
+5. Email is marked as verified.
 6. User can log in using email or username.
 7. JWT token is generated upon successful login.
 8. Protected routes validate the JWT token.
+
+### Password Recovery Flow
+
+1. User clicks "Forgot Password".
+2. User enters their registered email address.
+3. System generates a secure 6-digit OTP.
+4. OTP is sent to the user's email.
+5. User enters the OTP and a new password.
+6. Password is securely re-hashed using bcrypt.
+7. User logs in with the new password.
 
 ### Google Authentication
 
@@ -191,6 +216,7 @@ GET /api/auth/all
 * Password Hashing with bcrypt
 * JWT Authentication
 * Email Verification
+* Password Recovery via OTP
 * OTP Expiration Support
 * Protected Routes
 * Environment Variables for Secrets
@@ -200,17 +226,16 @@ GET /api/auth/all
 ## Future Improvements
 
 * Refresh Tokens
-* Forgot Password
-* Password Reset via Email
+* Resend Verification OTP
 * Role-Based Access Control (RBAC)
 * User Profile Management
 * Multi-Factor Authentication (MFA)
-* Dark Mode
 * Account Settings
+* Dark Mode
 
 ## Author
 
-### Mebit Melak
+### Mebtu Melak
 
 Frontend Developer | React Developer | MERN Stack Developer
 
